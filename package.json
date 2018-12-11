@@ -15,5 +15,6 @@
   "bugs": {
     "url": "https://github.com/timgerstel/fingerprinter/issues"
   },
-  "homepage": "https://github.com/timgerstel/fingerprinter#readme"
+  "homepage": "https://github.com/timgerstel/fingerprinter#readme",
+  "dependencies": {}
 }
