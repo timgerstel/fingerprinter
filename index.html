@@ -3,24 +3,26 @@
     <title>Fingerprinter</title>
     <script src="https://unpkg.com/lodash@4.17.11"></script>
     <style>
-	    table {border-collapse: collapse; table-layout: fixed; width: 100%;}
-	    table td {border: 1px solid #fff; width: 100%; word-wrap: break-word; vertical-align: top;}
+	    table {border-collapse: collapse; border: 1px solid black; table-layout: fixed; width: 100%;}
+	    table td {border: 1px solid black; width: 100%; word-wrap: break-word; vertical-align: top;}
 	</style>
   </head>
   <body>
     <script src="./src/js/fingerprinter.js"></script>
     <button type="button" id="btn" onclick="renderFP()">Get Fingerprint</button>
     <table id="User_FP" style="width: 100%">
+    	<col width="30%">
+    	<col width="70%">
     	<tr>
     		<th>Attribute</th>
     		<th>Value</th>
-    	</tr>   	
-    	<tr>
-   			<td>User Agent</td>
-    		<td>
-    			<strong id="userAgent"></strong>
-    		</td>
     	</tr>
+    	<tr>
+   			<td>Content Language</td>
+    		<td>
+    			<strong id="contentLanguage"></strong>
+    		</td>
+    	</tr>   	
     	<tr>
    			<td>Plugins</td>
     		<td>
@@ -31,6 +33,12 @@
    			<td>Platform</td>
     		<td>
     			<strong id="userPlatform"></strong>
+    		</td>
+    	</tr>
+    	<tr>
+   			<td>User Agent</td>
+    		<td>
+    			<strong id="userAgent"></strong>
     		</td>
     	</tr>
     	<tr>

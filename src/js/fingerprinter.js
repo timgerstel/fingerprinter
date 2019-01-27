@@ -1,16 +1,4 @@
-let getPlugins = function(){
-	var results = [];
-	var numPlugins = navigator.plugins.length;
-	var plugins = '';
-	if(numPlugins) results.push(`numPlugins: ${numPlugins} </br>`);
-	for(var i = 0; i < numPlugins; i++){
-		plugins += navigator.plugins[i].name + "</br>";
-	}
-	if(plugins) results.push(`plugins: </br>${plugins}`);
-	return results;
-}
-
-let getCanvasFP = function(options) {
+let getCanvasFP = function() {
 	var results = [];
 	var canvas = document.createElement('canvas');
 	canvas.height = 60;
@@ -34,6 +22,22 @@ let getCanvasFP = function(options) {
 	return results;
 }
 
+let getLanguage = function(){
+	return navigator.userLanguage || navigator.language; //navigator.userLanguage used for IE
+}
+
+let getPlugins = function(){
+	var results = [];
+	var numPlugins = navigator.plugins.length;
+	var plugins = '';
+	if(numPlugins) results.push(`numPlugins: ${numPlugins} </br>`);
+	for(var i = 0; i < numPlugins; i++){
+		plugins += navigator.plugins[i].name + "</br>";
+	}
+	if(plugins) results.push(`plugins: </br>${plugins}`);
+	return results;
+}
+
 let getUserAgent = function(){
 	return navigator.userAgent;
 }
@@ -43,6 +47,7 @@ let getUserPlatform = function(){
 }
 
 let renderFP = function(callback){
+	document.getElementById('contentLanguage').innerHTML = getLanguage();
 	document.getElementById('userAgent').innerHTML = getUserAgent();
 	document.getElementById('userPlatform').innerHTML = getUserPlatform();
 	document.getElementById('userPlugins').innerHTML = getPlugins();
