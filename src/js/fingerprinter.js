@@ -1,5 +1,13 @@
-let getHeaders = function(callback){
-	var request = new XMLHttpRequest();
+let getPlugins = function(){
+	var results = [];
+	var numPlugins = navigator.plugins.length;
+	var plugins = '';
+	if(numPlugins) results.push(`numPlugins: ${numPlugins} </br>`);
+	for(var i = 0; i < numPlugins; i++){
+		plugins += navigator.plugins[i].name + "</br>";
+	}
+	if(plugins) results.push(`plugins: </br>${plugins}`);
+	return results;
 }
 
 let getCanvasFP = function(options) {
@@ -15,10 +23,12 @@ let getCanvasFP = function(options) {
 	ctx.fillRect(125, 1, 62, 20);
 	ctx.fillStyle = "#069";
 	canvas.font = "l1pt not-a-real-font-1234";
-	ctx.fillText("ABCDEFGHIJKLMNOPQRSTUVWXYZ, \ud83d\ude03", 2, 15);
+	var fpString ="ABCDEFGHIJKLMNOPQRSTUVWXYZ ,:\";/\;|' \ud83d\ude03";
+	var fpStringL = "abcdefghijklmnopqrstuvwxyz ,:\";/\;|' \ud83d\ude03";
+	ctx.fillText(fpString, 2, 15);
 	canvas.fillStyle = "rgb(102, 204, 0 0.7)";
 	canvas.font = "18pt Arial";
-	ctx.fillText("abcdefghijklmnopqrstuvwxyz, \ud83d\ude03", 4, 45);
+	ctx.fillText("abcdefghijklmnopqrstuvwxyz ,; \ud83d\ude03", 4, 45);
 
 	if(canvas.toDataURL) results.push(canvas.toDataURL());
 	return results;
@@ -32,8 +42,9 @@ let getUserPlatform = function(){
 	return navigator.platform;
 }
 
-let renderFP = function(){
+let renderFP = function(callback){
 	document.getElementById('userAgent').innerHTML = getUserAgent();
 	document.getElementById('userPlatform').innerHTML = getUserPlatform();
+	document.getElementById('userPlugins').innerHTML = getPlugins();
 	document.getElementById('fp').innerHTML = getCanvasFP();
 }
