@@ -1,3 +1,39 @@
+/**
+var express = require('express');
+var mysql = require('mysql');
+var app = express();
+
+var connection = mysql.createConnection({
+	host: 'localhost',
+	user: 'root',
+	password: '',
+	database: 'fingerprints'
+});
+
+connection.connection(function(error){
+	if(error){
+		console.log('Error connecting to database');
+		return;
+	}
+	console.log(`Connected to ${connection.host}`);
+})
+
+//Testing SQL Connection
+if(connection){
+	app.get('/', function(req, res){
+		connection.query('SELECT * FROM fingerprints', function(error, rows, fields){
+			if(!error){
+				console.log('Successful query from database');
+			} else {
+				console.log('Query unsuccessful');
+			}
+		});
+	});
+}
+
+app.listen(6969);
+**/
+
 let getCanvasFP = function() {
 	var results = [];
 	var canvas = document.createElement('canvas');
@@ -46,7 +82,7 @@ let getUserPlatform = function(){
 	return navigator.platform;
 }
 
-let renderFP = function(callback){
+let renderFP = function(){
 	document.getElementById('contentLanguage').innerHTML = getLanguage();
 	document.getElementById('userAgent').innerHTML = getUserAgent();
 	document.getElementById('userPlatform').innerHTML = getUserPlatform();
